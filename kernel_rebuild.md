@@ -5,11 +5,22 @@ If real Hardware-uC should interact with the WSL Virtual CAN it is also needed t
 
 + sudo apt update && sudo apt upgrade
 
-+ sudo apt install build-essential flex bison libssl-dev libelf-dev libncurses5-dev dwarves
++ sudo apt install build-essential flex bison libssl-dev libelf-dev libncurses5-dev dwarves -y
 
-+ cat /proc/config.gz | gunzip > .config
++ check for your WSL kernel version in a Windows Powershell
 
-+ make prepare modules_prepare
+        wsl.exe --status
+
++ Depending on the Kernel version you should pull a different branch. Look for the branch with your kernel version and then clone it
+        
+        git clone ---branch <branch_name> https://github.com/microsoft/WSL2-Linux-Kernel.git
+
++ Change into the newly created directory
+
+        cd WSL2-Linux-Kernel/
+        cat /proc/config.gz | gunzip > .config
+
++ make prepare modules_prepare (if input is needed, just press ENTER)
 
 + make menuconfig
 
